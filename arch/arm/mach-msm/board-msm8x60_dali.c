@@ -10006,7 +10006,7 @@ static struct pm8xxx_vibrator_platform_data pm8058_vib_pdata = {
 
 static struct pm8xxx_rtc_platform_data pm8058_rtc_pdata = {
 #if defined(CONFIG_KOR_MODEL_SHV_E120L)
-	.rtc_write_enable       = false,
+	.rtc_write_enable       = true,
 #else /* if fusion csfb, enable rtc_write */
 	.rtc_write_enable       = true,
 #endif
