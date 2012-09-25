@@ -99,6 +99,7 @@ struct vsync {
 	struct device *dev;
 	struct work_struct vsync_work;
 	int vsync_irq_enabled;
+	struct completion vsync_wait;
 };
 
 extern struct vsync vsync_cntrl;
@@ -832,8 +833,6 @@ static inline int mdp_bus_scale_update_request(uint32_t index)
 void mdp_dma_vsync_ctrl(int enable);
 void mdp_dma_video_vsync_ctrl(int enable);
 void mdp_dma_lcdc_vsync_ctrl(int enable);
-void mdp3_vsync_irq_enable(int intr, int term);
-void mdp3_vsync_irq_disable(int intr, int term);
 
 #ifdef MDP_HW_VSYNC
 void vsync_clk_prepare_enable(void);
@@ -877,10 +876,6 @@ static inline void mdp4_overlay_dsi_state_set(int state)
 static inline int mdp4_overlay_dsi_state_get(void)
 {
 	return 0;
-}
-static inline void mdp4_iommu_detach(void)
-{
-	/*empty */
 }
 #endif
 
