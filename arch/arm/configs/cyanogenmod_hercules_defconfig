@@ -2270,6 +2270,7 @@ CONFIG_FB_CFB_IMAGEBLIT=y
 #
 # Frame buffer hardware drivers
 #
+CONFIG_FB_MSM_VSYNC_SYSFS=y
 # CONFIG_FB_S1D13XXX is not set
 # CONFIG_FB_TMIO is not set
 # CONFIG_FB_UDL is not set
@@ -3411,7 +3412,7 @@ CONFIG_CRYPTO_TWOFISH_COMMON=y
 #
 CONFIG_CRYPTO_DEFLATE=y
 # CONFIG_CRYPTO_ZLIB is not set
-# CONFIG_CRYPTO_LZO is not set
+CONFIG_CRYPTO_LZO=y
 
 #
 # Random Number Generation
