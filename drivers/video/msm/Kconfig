@@ -422,14 +422,6 @@ config FB_MSM_NO_MDP_PIPE_CTRL
 	  screen updates will use a different clock control mechanism if
 	  this is selected.
 
-config FB_MSM_VSYNC_SYSFS
-	depends on FB_MSM_OVERLAY
-	bool "Use sysfs_notify for vsync notification"
-	default y
-	---help---
-	  Saying 'Y' here will use sysfs_notify instead of the default uevent for
-	  notification of vsync events to userspace.
-
 config FB_MSM_OVERLAY0_WRITEBACK
 	depends on FB_MSM_OVERLAY
         bool "MDP overlay0 write back mode enable"
@@ -458,6 +450,13 @@ config FB_MSM_LCDC_LD9040_WVGA_PANEL
 	select FB_MSM_LCDC_LD9040_WVGA
 	---help---
 	  Support for LCDC LD9040 WVGA (480x800) panel
+
+config FB_MSM_LCDC_S6E63M0_WVGA_PANEL
+	depends on FB_MSM_LCDC_HW
+	bool "LCDC S6B63M0 WVGA Panel"
+	select FB_MSM_LCDC_S6E63M0_WVGA
+	---help---
+	  Support for LCDC S6E63M0 WVGA (480x800) panel
 
 config FB_MSM_LCDC_P5LTE_WXGA_PANEL
 	depends on FB_MSM_LCDC_HW
