@@ -165,6 +165,10 @@
 #include <mach/tdmb_pdata.h>
 #endif
 
+#ifdef CONFIG_ANDROID_RAM_CONSOLE
+#include <linux/memblock.h>
+#endif
+
 #include <../../../drivers/bluetooth/bluesleep.c> //SAMSUNG_BT_CONFIG
 
 #define MSM_SHARED_RAM_PHYS 0x40000000
@@ -3983,6 +3987,24 @@ static void __init msm8x60_init_dsps(void)
 #define MSM_PMEM_ADSP_SIZE         0x02900000
 #endif
 #define MSM_PMEM_AUDIO_SIZE        0x28B000
+
+#ifdef CONFIG_ANDROID_RAM_CONSOLE
+#define RAM_CONSOLE_START           0x80000000
+#define RAM_CONSOLE_SIZE            SZ_1M
+
+static struct resource ram_console_resource[] = {
+	{
+		.flags  = IORESOURCE_MEM,
+	},
+};
+
+static struct platform_device ram_console_device = {
+	.name           = "ram_console",
+	.id             = -1,
+	.num_resources  = ARRAY_SIZE(ram_console_resource),
+	.resource       = ram_console_resource,
+};
+#endif
 
 #define MSM_SMI_BASE          0x38000000
 #define MSM_SMI_SIZE          0x4000000
@@ -8831,6 +8853,9 @@ static struct platform_device *surf_devices[] __initdata = {
 	&akm_i2c_gpio_device,
 #endif
 	&motor_i2c_gpio_device,
+#ifdef CONFIG_ANDROID_RAM_CONSOLE
+	&ram_console_device,
+#endif
 };
 
 #ifdef CONFIG_ION_MSM
@@ -9068,6 +9093,12 @@ static void __init msm8x60_reserve(void)
 {
 	reserve_info = &msm8x60_reserve_info;
 	msm_reserve();
+#ifdef CONFIG_ANDROID_RAM_CONSOLE
+    if (memblock_remove(RAM_CONSOLE_START, RAM_CONSOLE_SIZE) == 0) {
+        ram_console_resource[0].start = RAM_CONSOLE_START;
+        ram_console_resource[0].end = RAM_CONSOLE_START+RAM_CONSOLE_SIZE-1;
+    }
+#endif
 }
 
 #define EXT_CHG_VALID_MPP 10
