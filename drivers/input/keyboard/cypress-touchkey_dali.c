@@ -776,7 +776,7 @@ static void cypress_touchkey_disable_backlight(void) {
 }
 
 static bool cypress_touchkey_enable_led_notification(void) {
-    if (touchkey_enable = 1)
+    if (touchkey_enable)
         return false;
 
     tkey_vdd_enable(1);
