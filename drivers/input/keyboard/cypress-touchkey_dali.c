@@ -55,7 +55,12 @@ Melfas touchkey register
 #define END_KEY 0x04
 
 #define I2C_M_WR 0		/* for i2c */
+
+#if defined (CONFIG_TOUCHKEY_HAPTIC)
 #define DEVICE_NAME "melfas_touchkey"
+#else
+#define DEVICE_NAME "sec_touchkey"
+#endif
 
 /*sec_class sysfs*/
 extern struct class *sec_class;
