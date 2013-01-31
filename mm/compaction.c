@@ -747,6 +747,7 @@ int compact_nodes(bool sync)
 	lru_add_drain_all();
 
 	for_each_online_node(nid)
+
 		compact_node(nid, sync);
 
 	return COMPACT_COMPLETE;
