@@ -97,7 +97,7 @@ start_readmac:
 
 	/* Writing Newly generated MAC ID to the Dongle */
 	if (0 == _dhd_set_mac_address(dhd, 0, mac))
-		DHD_INFO(("dhd_bus_start: MACID is overwritten\n"));
+		DHD_ERROR(("dhd_bus_start: MACID is overwritten\n"));
 	else
 		DHD_ERROR(("dhd_bus_start: _dhd_set_mac_address() failed\n"));
 
@@ -149,7 +149,7 @@ int dhd_write_rdwr_macaddr(struct ether_addr *mac)
 				DHD_ERROR(("[WIFI] Mac address [%s] Failed"
 				" to write into File: %s\n", buf, filepath_old));
 			else
-				DHD_INFO(("[WIFI] Mac address [%s] written"
+				DHD_ERROR(("[WIFI] Mac address [%s] written"
 				" into File: %s\n", buf, filepath_old));
 		}
 		set_fs(oldfs);
@@ -171,7 +171,7 @@ int dhd_write_rdwr_macaddr(struct ether_addr *mac)
 				DHD_ERROR(("[WIFI] Mac address [%s] Failed"
 				" to write into File: %s\n", buf, filepath));
 			else
-				DHD_INFO(("[WIFI] Mac address [%s] written"
+				DHD_ERROR(("[WIFI] Mac address [%s] written"
 				" into File: %s\n", buf, filepath));
 		}
 		set_fs(oldfs);
@@ -268,7 +268,7 @@ int dhd_check_rdwr_macaddr(struct dhd_info *dhd, dhd_pub_t *dhdp,
 					g_imac_flag = MACADDR_NONE;
 				} else { /* change MAC address */
 					if (0 == _dhd_set_mac_address(dhd, 0, mac)) {
-						DHD_INFO(("%s: MACID is"
+						DHD_ERROR(("%s: MACID is"
 						" overwritten\n", __FUNCTION__));
 						g_imac_flag = MACADDR_MOD;
 					} else {
@@ -317,7 +317,7 @@ int dhd_check_rdwr_macaddr(struct dhd_info *dhd, dhd_pub_t *dhdp,
 					g_imac_flag = MACADDR_NONE;
 				} else { /* change MAC address */
 					if (0 == _dhd_set_mac_address(dhd, 0, mac)) {
-						DHD_INFO(("%s: MACID is"
+						DHD_ERROR(("%s: MACID is"
 						" overwritten\n", __FUNCTION__));
 						g_imac_flag = MACADDR_MOD;
 					} else {
@@ -355,7 +355,7 @@ int dhd_check_rdwr_macaddr(struct dhd_info *dhd, dhd_pub_t *dhdp,
 				(unsigned int *)&(mac->octet[5]));
 			/* Writing Newly generated MAC ID to the Dongle */
 			if (0 == _dhd_set_mac_address(dhd, 0, mac)) {
-				DHD_INFO(("%s: MACID is overwritten\n",
+				DHD_ERROR(("%s: MACID is overwritten\n",
 					__FUNCTION__));
 				g_imac_flag = MACADDR_COB;
 			} else {
@@ -382,7 +382,7 @@ int dhd_check_rdwr_macaddr(struct dhd_info *dhd, dhd_pub_t *dhdp,
 			(unsigned int *)&(mac->octet[4]),
 			(unsigned int *)&(mac->octet[5]));
 		if (0 == _dhd_set_mac_address(dhd, 0, mac)) {
-			DHD_INFO(("%s: MACID is overwritten\n", __FUNCTION__));
+			DHD_ERROR(("%s: MACID is overwritten\n", __FUNCTION__));
 			g_imac_flag = MACADDR_COB;
 		} else {
 			DHD_ERROR(("%s: _dhd_set_mac_address() failed\n",
@@ -472,7 +472,7 @@ int dhd_write_rdwr_korics_macaddr(struct dhd_info *dhd, struct ether_addr *mac)
 			(unsigned int *)&(mac->octet[4]),
 			(unsigned int *)&(mac->octet[5]));
 	else
-		DHD_INFO(("dhd_bus_start: Reading from the"
+		DHD_ERROR(("dhd_bus_start: Reading from the"
 			" '%s' returns 0 bytes\n", filepath));
 
 	if (fp)
@@ -481,7 +481,7 @@ int dhd_write_rdwr_korics_macaddr(struct dhd_info *dhd, struct ether_addr *mac)
 	if (!is_zeromac) {
 		/* Writing Newly generated MAC ID to the Dongle */
 		if (0 == _dhd_set_mac_address(dhd, 0, mac))
-			DHD_INFO(("dhd_bus_start: MACID is overwritten\n"));
+			DHD_ERROR(("dhd_bus_start: MACID is overwritten\n"));
 		else
 			DHD_ERROR(("dhd_bus_start: _dhd_set_mac_address() "
 				"failed\n"));
@@ -774,7 +774,7 @@ startwrite:
 				DHD_ERROR(("[WIFI] Mac address [%s] Failed to"
 				" write into File: %s\n", buf, filepath_old));
 			else
-				DHD_INFO(("[WIFI] Mac address [%s] written"
+				DHD_ERROR(("[WIFI] Mac address [%s] written"
 				" into File: %s\n", buf, filepath_old));
 		}
 		set_fs(oldfs);
@@ -809,7 +809,7 @@ startwrite:
 				DHD_ERROR(("[WIFI] Mac address [%s] Failed to"
 				" write into File: %s\n", buf, filepath));
 			else
-				DHD_INFO(("[WIFI] Mac address [%s] written"
+				DHD_ERROR(("[WIFI] Mac address [%s] written"
 				" into File: %s\n", buf, filepath));
 		}
 		set_fs(oldfs);
